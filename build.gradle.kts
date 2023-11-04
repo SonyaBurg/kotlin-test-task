@@ -81,6 +81,9 @@ configure(subprojects.filter { server in it.name }) {
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
         testImplementation("org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion")
         testRuntimeOnly("org.junit.platform:junit-platform-console:1.9.0")
+
+        val latest_version = "2.0.7"
+        testImplementation("org.jetbrains.academy.test.system:core:$latest_version")
     }
 
     val jvmVersion = "11"

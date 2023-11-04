@@ -1,9 +1,6 @@
-@file:Suppress("UnusedParameter")
-
 package org.jetbrains.kotlin.test.task.tamagotchi.game
 
 import org.jetbrains.kotlin.test.task.tamagotchi.models.Command
-import org.jetbrains.kotlin.test.task.tamagotchi.models.Mode
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -11,13 +8,17 @@ import org.springframework.web.bind.annotation.*
 class GameResource(val service: GameService) {
     @CrossOrigin
     @PostMapping("/get")
-    fun getCommand(@RequestBody mode: String): Command? = TODO("Not implemented yet")
+    fun getCommand(@RequestBody mode: String): Command? {
+        return service.getCommand(mode.toMode() ?: return null)
+    }
 
     @CrossOrigin
     @PostMapping("/add")
-    fun addCommand(@RequestBody command: Int): Boolean = TODO("Not implemented yet")
+    fun addCommand(@RequestBody command: Int): Boolean {
+        return service.addCommand(command.toCommand() ?: return false)
+    }
 
     @CrossOrigin
     @GetMapping("/all")
-    fun getAllCommands(): ArrayDeque<Command> = TODO("Not implemented yet")
+    fun getAllCommands(): ArrayDeque<Command> = service.commands
 }
